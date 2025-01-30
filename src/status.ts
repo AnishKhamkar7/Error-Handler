@@ -1,0 +1,28 @@
+export type StatusMeaning =
+  | "OK"
+  | "CREATED"
+  | "NO CONTENT"
+  | "BAD REQUEST"
+  | "UNAUTHORIZED"
+  | "FORBIDDEN"
+  | "NOT FOUND"
+  | "CONFLICT"
+  | "INTERNAL SERVER ERROR"
+  | "BAD GATEWAY"
+  | "SERVICE UNAVAILABLE"
+  | "GATEWAY TIMEOUT";
+
+export const statusMap: Record<StatusMeaning, number> = {
+  OK: 200,
+  CREATED: 201,
+  "NO CONTENT": 204,
+  "BAD REQUEST": 400,
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403,
+  "NOT FOUND": 404,
+  CONFLICT: 409,
+  "INTERNAL SERVER ERROR": 500,
+  "BAD GATEWAY": 502,
+  "SERVICE UNAVAILABLE": 503,
+  "GATEWAY TIMEOUT": 504,
+};

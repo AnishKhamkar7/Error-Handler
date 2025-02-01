@@ -1,4 +1,3 @@
-import { error } from "console";
 import { Request, Response, NextFunction } from "express";
 import { createLogger, format, transports } from "winston";
 import { statusMap, StatusMeaning } from "./status";
@@ -47,5 +46,15 @@ export default class ErrorManager {
     };
   }
 
-  static;
+  static Throw<T>(message: string, status: StatusMeaning, data?: T) {
+    const error = new CustomErrors(message, status, data);
+
+    logger.error({
+      message,
+      status,
+      data,
+    });
+
+    throw error;
+  }
 }

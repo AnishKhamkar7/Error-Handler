@@ -1,6 +1,7 @@
 import { error } from "console";
 import { Request, Response, NextFunction } from "express";
 import { createLogger, format, transports } from "winston";
+import { statusMap, StatusMeaning } from "./status";
 
 const levels = {
   error: 0,
@@ -21,6 +22,17 @@ const logger = createLogger({
     new transports.File({ filename: "combined.log" }),
   ],
 });
+
+class CustomErrors<T> extends Error {
+  status: StatusMeaning;
+  data?: T;
+
+  constructor(message: string, status: StatusMeaning, data?: T) {
+    super(message);
+    this.status = status;
+    this.data = data;
+  }
+}
 
 type AsyncFunction = (
   req: Request,
